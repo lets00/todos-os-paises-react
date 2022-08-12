@@ -1,10 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 export default function Filtro() {
+  const [inputValue, setInputValue] = useState('');
+
+  function handleInputChange(event) {
+    setInputValue(event.target.value)
+  }
+
   return (
     <div className='row'>
       <div className='col-12 col-lg-9'>
-        <input type='text' className='form-control' placeholder='Filtro'></input>
+        <input type='text' value={inputValue} onChange={handleInputChange} className='form-control' placeholder='Filtro' />
       </div>
       <div className='col-12 col-lg-1'>
         <span className='form-label'>Países: 999</span>
