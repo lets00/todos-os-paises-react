@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 
-export default function Filtro() {
+export default function Filtro(props) {
   const [inputValue, setInputValue] = useState('');
 
   function handleInputChange(event) {
     setInputValue(event.target.value)
+    props.onChangeFiltroValue(event.target.value)
   }
 
   return (
@@ -16,7 +17,7 @@ export default function Filtro() {
         <span className='form-label'>Países: 999</span>
       </div>
       <div className='col-12 col-lg-2'>
-        <span className='form-label'>População: 9.999.999</span>
+        <span className='form-label'>População: 9.999.999.999</span>
       </div>
     </div>
   )
