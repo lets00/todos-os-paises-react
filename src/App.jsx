@@ -9,11 +9,11 @@ function App() {
   const [filtroValue, setFiltroValue] = useState('')
   const [paises, setPaises] = useState([])
 
-  useEffect(() => {    
+  useEffect(() => {
     const coletaDados = async () => {
       const data = await fetch('https://restcountries.com/v3.1/all')
       const dataJson = await data.json()
-      const paisesNomeEBandeira = dataJson.map(pais => { return {'nome': pais.translations.por.common.toLowerCase(), 'bandeira': pais.flags.png }} )
+      const paisesNomeEBandeira = dataJson.map(pais => { return { 'nome': pais.translations.por.common.toLowerCase(), 'bandeira': pais.flags.png, 'populacao': pais.population } })
       setPaises(paisesNomeEBandeira)
     }
 
@@ -28,8 +28,11 @@ function App() {
     <main>
       <div className='container'>
         <Titulo />
-        <Filtro onChangeFiltroValue={handleFiltroValue}/>
-        <Paises listaDePaises={paises.filter( pais => pais.nome.includes(filtroValue.toLowerCase())) }/>
+        <Filtro
+          totalDePaises={paises.filter(pais => pais.nome.includes(filtroValue.toLowerCase())).length}
+          populacaoTotal={paises.filter(pais => pais.nome.includes(filtroValue.toLowerCase())).reduce((acc, country) => acc + country.populacao, 0)}
+          onChangeFiltroValue={handleFiltroValue} />
+        <Paises listaDePaises={paises.filter(pais => pais.nome.includes(filtroValue.toLowerCase()))} />
       </div>
     </main>
   )

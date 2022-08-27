@@ -14,10 +14,10 @@ export default function Filtro(props) {
         <input type='text' value={inputValue} onChange={handleInputChange} className='form-control' placeholder='Filtro' />
       </div>
       <div className='col-12 col-lg-1'>
-        <span className='form-label'>Países: 999</span>
+        <span className='form-label'>Países: {props.totalDePaises}</span>
       </div>
       <div className='col-12 col-lg-2'>
-        <span className='form-label'>População: 9.999.999.999</span>
+        <span className='form-label'>População: {props.populacaoTotal}</span>
       </div>
     </div>
   )
